@@ -3,5 +3,7 @@ export const rootRedirect = function (to, from, next) {
   let isLogin = true
   if (!isLogin) {
     next('/signin')
+  } else {
+    next('/main')
   }
 }

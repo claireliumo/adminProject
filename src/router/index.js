@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Signin from '@/components/signin/signin'
 import Signup from '@/components/signin/signup'
+import Main from '@/components/main/main'
+import Page1 from '@/components/pages/page1'
 import {rootRedirect} from './routes'
 Vue.use(Router)
 
@@ -24,7 +26,13 @@ export default new Router({
     },
     {
       name: 'main',
-      path: '/:userId'
+      path: '/adminProject',
+      component: Main,
+      children: [
+        {
+          path: 'page1',
+          component: Page1
+        }]
     }
   ]
 })
