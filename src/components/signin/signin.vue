@@ -26,7 +26,8 @@
 export default {
   name: 'Signin',
   mounted () {
-    console.log('mounted')
+    // to do check login status
+
   },
   data () {
     return {
@@ -47,7 +48,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../../styles/imports.scss';
   .signin {
     width: 100%;
