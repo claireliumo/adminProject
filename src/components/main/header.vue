@@ -36,7 +36,7 @@ export default{
     handleSelectChange: function (key) {
       console.log(key)
     },
-    signout: function() {
+    signout: function () {
       console.log('signout')
       this.$router.push('/signin')
     }

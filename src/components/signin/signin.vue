@@ -43,7 +43,13 @@ export default {
     },
     signin: function () {
       console.log('signin')
-      this.$router.push('main')
+      this.$http.post('api/login', this.form).then(response => {
+        if (response.code === 0) {
+          this.$router.push('main')
+        } else {
+          console.log(response.msg)
+        }
+      })
     }
   }
 }
