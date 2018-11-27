@@ -2,22 +2,20 @@
   <div class="signin">
     <div class="signin__dialog">
       <div class="signin__dialog--title">BIM平台</div>
-      <el-form :model="form"
-               class="signin__dialog--form"
-               label-position="left"
-               label-width="100px"
-               size="medium">
-        <el-form-item label="用户名" >
-          <el-input v-model="form.uname" autocomplete="off" width="250px"></el-input>
-        </el-form-item>
-        <el-form-item label="密码">
-          <el-input type="password" v-model="form.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="signin">登录</el-button>
-          <el-button type="text" @click="goToSignup">注册</el-button>
-        </el-form-item>
-      </el-form>
+      <form class="signin__dialog--form">
+        <div class="signin__dialog--form-item">
+          <span>用户名</span>
+          <input v-model="form.uname" name="uname" />
+        </div>
+        <div class="signin__dialog--form-item">
+          <span>密码</span>
+          <input v-model="form.password" name="password" type="password" />
+        </div>
+        <div class="signin__dialog--form-ctrl">
+          <button @click="signin">登录</button>
+          <button @click="goToSignup">注册</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -42,7 +40,6 @@ export default {
       this.$router.push('signup')
     },
     signin: function () {
-      console.log('signin')
       this.$http.post('api/login', this.form).then(response => {
         if (response.code === 0) {
           this.$router.push('main')
@@ -60,7 +57,8 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: $md-blue1;
+    background: linear-gradient(#023838, #011f1f);
+   // background-color: $md-blue1;
     &__dialog {
       display: flex;
       flex-direction: column;
@@ -68,24 +66,67 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px;
+      width: 650px;
       height: 400px;
       padding: 10px;
-      border: 1px solid $md-bluegrey3;
-      border-radius: 4px;
-      background-color: $md-blue2;
+      border: 4px solid;
+      border-image: linear-gradient(#01ffff, #023838) 30 30;
+      background-color: #011f1f;
+      box-shadow: inset 0 0 100px #01ffff;
       &--title{
-         height: 50px;
-         line-height: 50px;
+         height: 60px;
+         line-height: 60px;
          font-weight: 600;
-         font-size: 30px;
+         font-size: 60px;
          text-align: center;
-         color: $md-bluegrey9;
+         color: #01ffff;
+         margin-top: 30px;
        }
       &--form{
          margin: 30px auto;
          height: 350px;
          width: 80%;
+         &-item {
+           height: 60px;
+           line-height: 60px;
+           border-bottom: 2px solid #01ffff;
+           display: flex;
+           justify-content: baseline;
+           span {
+             color: #01ffff;
+             font-size: 26px;
+             font-weight: 600;
+             opacity: 0.9;
+             width: 100px;
+           }
+           input {
+             flex: 1;
+             height: 100%;
+             color: #01ffff;
+             font-size: 26px;
+             background: transparent;
+             border: none;
+             &:focus{
+               border: none;
+               outline: none;
+             }
+           }
+         }
+         &-ctrl {
+           display: flex;
+           margin-top: 45px;
+           justify-content: space-evenly;
+           button {
+             width: 120px;
+             text-align: center;
+             font-size: 26px;
+             font-weight: 600;
+             color: #01ffff;
+             cursor: pointer;
+             background: transparent;
+             border:none;
+           }
+         }
        }
      }
   }
