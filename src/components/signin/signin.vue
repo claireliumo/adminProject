@@ -11,9 +11,12 @@
           <span>密码</span>
           <input v-model="form.password" name="password" type="password" />
         </div>
+        <div class="signin__dialog--form-msg" v-if="err">
+          {{err}}
+        </div>
         <div class="signin__dialog--form-ctrl">
           <button @click="signin">登录</button>
-          <button @click="goToSignup">注册</button>
+          <router-link to="/signup" class="toSignup">注册</router-link>
         </div>
       </form>
     </div>
@@ -32,19 +35,19 @@ export default {
       form: {
         uname: null,
         password: null
-      }
+      },
+      err: null
     }
   },
   methods: {
-    goToSignup: function () {
-      this.$router.push('signup')
-    },
     signin: function () {
-      this.$http.post('api/login', this.form).then(response => {
+      this.$http.post('/api/login', this.form).then(response => {
         if (response.code === 0) {
-          this.$router.push('main')
+          console.log(response)
+          this.$router.push('/main')
         } else {
-          console.log(response.msg)
+          this.err = response.data.data
+          console.log(response.data.data)
         }
       })
     }
@@ -112,11 +115,18 @@ export default {
              }
            }
          }
+         &-msg {
+            color: red;
+            height: 20px;
+            line-height: 20px;
+            text-align: left;
+            margin-top: 6px;
+          }
          &-ctrl {
            display: flex;
            margin-top: 45px;
            justify-content: space-evenly;
-           button {
+           button, .toSignup {
              width: 120px;
              text-align: center;
              font-size: 26px;

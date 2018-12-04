@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
    <Header />
 
   </div>
@@ -18,3 +18,10 @@ export default{
   }
 }
 </script>
+<style lang="scss">
+  .main{
+    background: linear-gradient(#023838, #011f1f);
+    width: 100%;
+    height: 100vh;
+  }
+</style>

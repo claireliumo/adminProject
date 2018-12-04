@@ -16,7 +16,7 @@
           <input v-model="form.code" name="password" type="password" />
         </div>
         <div class="signup__dialog--form-ctrl">
-          <button @click="goToSignup">马上注册</button>
+          <button @click="signup">马上注册</button>
         </div>
       </form>
     </div>
@@ -42,7 +42,12 @@ export default {
     },
     signup: function () {
       // signup api request
-      this.backToSignin()
+      this.$http.post('api/signup', this.form).then(response => {
+        this.backToSignin()
+      }).catch(err => {
+        console.log(err)
+        this.$router.push('signup')
+      })
     }
   }
 }
