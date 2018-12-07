@@ -9,11 +9,12 @@
              class="customHeader"
              active-text-color="#feb302"
              @select="handleSelectChange">
-      <el-submenu index="environment" style="background-color: transparent">
+      <!-- <el-submenu index="environment" style="background-color: transparent">
         <template slot="title">项目概况</template>
         <el-menu-item index="internal">室内环境</el-menu-item>
         <el-menu-item index="outdoor">室外环境</el-menu-item>
-      </el-submenu>
+      </el-submenu> -->
+       <el-menu-item index="outline">项目概况</el-menu-item>
       <el-submenu index="power">
         <template slot="title">环境信息</template>
         <el-menu-item index="internal">室内环境</el-menu-item>
@@ -27,7 +28,7 @@
     <div class="main-header__tool">
       <i class="el-icon-rank"></i>
       <i class="el-icon-setting"></i>
-      <el-button type="text" @click="signout">登出</el-button>
+      <el-button type="text" @click="signout"><i class="el-icon-error"></i></el-button>
     </div>
   </div>
 </template>
@@ -85,6 +86,8 @@ export default{
       margin: auto 20px;
       i{
         width: 40px;
+        color: #01ffff;
+        font-size: 28px;
       }
      }
   }

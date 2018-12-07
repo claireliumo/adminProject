@@ -21,7 +21,7 @@
          </div>
        </div>
      </div>
-     <div class="main-contnet__echarts">
+     <div class="main-content__echarts">
        <h1>Echarts</h1>
      </div>
    </div>
@@ -57,8 +57,9 @@ export default{
 <style lang="scss">
   .main{
     background: linear-gradient(#023838, #011f1f);
-    width: 100%;
-    height: 100vh;
+    width: 1920px;
+    height: 1080px;
+    overflow: auto;
     &-content {
       display: flex;
       margin-top: 20px;
@@ -120,6 +121,7 @@ export default{
         flex: 1;
         margin-left: 20px;
         border: 1px solid #01ffff;
+        color: #01ffff;
       }
     }
   }
