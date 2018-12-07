@@ -1,24 +1,26 @@
 <template>
   <div class="main-header">
     <div class="main-header__logo">
-      <i class="el-icon-service"></i>
+      <span>永丰BIM平台</span>
     </div>
     <el-menu mode="horizontal"
-             background-color="#545c64"
-             text-color="#fff"
-             active-text-color="#ffd04b"
+             text-color="#01ffff"
+             background-color="transparent"
+             class="customHeader"
+             active-text-color="#feb302"
              @select="handleSelectChange">
-      <el-submenu index="environment">
-        <template slot="title">环境</template>
+      <el-submenu index="environment" style="background-color: transparent">
+        <template slot="title">项目概况</template>
         <el-menu-item index="internal">室内环境</el-menu-item>
         <el-menu-item index="outdoor">室外环境</el-menu-item>
       </el-submenu>
       <el-submenu index="power">
-        <template slot="title">能源消耗</template>
-        <el-menu-item index="elec">用电</el-menu-item>
-        <el-menu-item index="water">用水</el-menu-item>
+        <template slot="title">环境信息</template>
+        <el-menu-item index="internal">室内环境</el-menu-item>
+        <el-menu-item index="outdoor">室外环境</el-menu-item>
+        <el-menu-item index="outdoor">用能情况</el-menu-item>
       </el-submenu>
-      <el-menu-item index="status">运行状态</el-menu-item>
+      <el-menu-item index="status">运行监控</el-menu-item>
       <el-menu-item index="security">门禁管理</el-menu-item>
       <el-menu-item index="fire">消防</el-menu-item>
     </el-menu>
@@ -48,18 +50,30 @@ export default{
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: #545c64;
+   // background-color: #545c64;
     display: flex;
+    .customHeader {
+      .el-menu-item {
+        font-size: 36px !important;
+      }
+
+      .el-submenu {
+        .el-submenu__title {
+          font-size: 36px !important;
+        }
+      }
+      .el-submenu:hover .el-submenu__title {
+        background: transparent !important;
+      }
+    }
+
     &__logo {
-      i{
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-        margin: 5px;
-        font-size: 32px;
-        color: #fff;
-        border: 2px solid #fff;
-        border-radius: 50%;
+      width: 400px;
+      padding-left: 20px;
+      span {
+        font-size: 50px;
+        font-weight: 600;
+        color: #01ffff;
       }
      }
     &__tool {

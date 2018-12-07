@@ -7,6 +7,8 @@ $--color-primary: #2196F3;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
+$--menu-item-font-size: 36px;
+$--menu-item-hover-fill: transparent;
 
 @import "~element-ui/packages/theme-chalk/src/index";
 @import "/styles/imports";
