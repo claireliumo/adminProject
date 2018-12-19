@@ -7,11 +7,14 @@ import {rootRedirect} from './routes'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: '/',
   routes: [
     {
       path: '/',
       name: 'root',
-      beforeEnter: rootRedirect
+      beforeEnter: rootRedirect,
+      redirect: 'signin'
     },
     {
       name: 'signin',

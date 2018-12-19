@@ -5,7 +5,10 @@
     </div>
     <div class="main-header__divider"></div>
     <div class="main-header__navbar">
-      <Menu :datas="datas.outline" v-width="200" className="main-header__navbar-menu"></Menu>
+      <Menu :datas="datas.outline" v-width="200" 
+            className="main-header__navbar-menu"
+            @click="handleClick"
+            @select="handleSelectChange"></Menu>
       <Menu :datas="datas.env" v-width="200" 
             className="main-header__navbar-menu" 
             @select="handleSelectChange"
@@ -29,7 +32,17 @@ export default{
       datas: {
         outline: [{
           title: '项目概况',
-          key: '1'
+          key: '1',
+          detail: [
+            {
+              title: '全区概况',
+              key: '1-1'
+            },
+            {
+              title: '建筑概况',
+              key: '1-2'
+            }
+          ]
         }],
         env: [{
           title: '环境信息',
@@ -37,11 +50,127 @@ export default{
           children: [
             {
               title: '室内环境',
-              key: '2-1'
+              key: '2-1',
+              children: [
+                {
+                  title: '建筑环境',
+                  key: '2-1-1',
+                  detail: [
+                    {
+                      title: '实时数据',
+                      key: '2-1-1-1'
+                    },
+                    {
+                      title: '历史数据',
+                      key: '2-1-1-2'
+                    }
+                  ]
+                },
+                {
+                  title: '楼层环境',
+                  key: '2-1-2',
+                  detail: [
+                    {
+                      title: '实时数据',
+                      key: '2-1-2-1'
+                    },
+                    {
+                      title: '历史数据',
+                      key: '2-1-2-2'
+                    }
+                  ]
+                },
+                {
+                  title: '房间环境',
+                  key: '2-1-3',
+                  detail: [
+                    {
+                      title: '实时数据',
+                      key: '2-1-2-1'
+                    },
+                    {
+                      title: '历史数据',
+                      key: '2-1-2-2'
+                    }
+                  ]
+                }
+              ]
             },
             {
               title: '室外环境',
-              key: '2-2'
+              key: '2-2',
+              children: [
+                {
+                  title: '实时数据',
+                  key: '2-2-1'
+                },
+                {
+                  title: '本日数据',
+                  key: '2-2-2',
+                  detail: [
+                    {
+                      title: '本日平均温度',
+                      key: '2-2-2-1'
+                    },
+                    {
+                      title: '本日平均湿度',
+                      key: '2-2-2-2'
+                    },
+                    {
+                      title: '本日平均风速',
+                      key: '2-2-2-3'
+                    },
+                    {
+                      title: '本日平均PM2.5',
+                      key: '2-2-2-4'
+                    }
+                  ]
+                },
+                {
+                  title: '本月数据',
+                  key: '2-2-3',
+                  detail: [
+                    {
+                      title: '本月温度',
+                      key: '2-2-3-1'
+                    },
+                    {
+                      title: '本月湿度',
+                      key: '2-2-3-2'
+                    },
+                    {
+                      title: '本月风速',
+                      key: '2-2-3-3'
+                    },
+                    {
+                      title: '本月PM2.5',
+                      key: '2-2-3-4'
+                    }
+                  ]
+                },
+                {
+                  title: '本年数据',
+                  key: '2-2-4',
+                  detail: [
+                    {
+                      title: '本年温度',
+                      key: '2-2-4-1'
+                    },
+                    {
+                      title: '本年湿度',
+                      key: '2-2-4-2'
+                    },
+                    {
+                      title: '本年风速',
+                      key: '2-2-4-3'
+                    },
+                    {
+                      title: '本年PM2.5',
+                      key: '2-2-4-4'
+                    }
+                  ]
+                }
+              ]
             },
             {
               title: '用能情况',
@@ -138,6 +267,7 @@ export default{
         background: transparent;
         color: #01ffff;
         font-size: 36px;
+        z-index: 80;
         .h-menu-li > ul > li > div {
           padding-left: 20px;
         }
