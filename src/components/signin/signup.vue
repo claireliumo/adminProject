@@ -2,7 +2,7 @@
   <div class="signup">
     <div class="signup__dialog">
       <div class="signup__dialog--title">BIM平台</div>
-      <form class="signup__dialog--form">
+      <div class="signup__dialog--form">
         <div class="signup__dialog--form-item">
           <span>用户名</span>
           <input v-model="form.uname" name="uname" />
@@ -15,10 +15,11 @@
           <span>注册码</span>
           <input v-model="form.code" name="password" type="password" />
         </div>
+        <div class="signup__dialog--form-tip">{{errortip}}</div>
         <div class="signup__dialog--form-ctrl">
           <button @click="signup">马上注册</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -31,9 +32,21 @@ export default {
       form: {
         uname: null,
         password: null,
-        confirmPassword: null,
-        code: null
-      }
+        apply_code: null,
+      },
+      nameAvailable: false,
+    }
+  },
+  watch: {
+    'form.uname': function(newVal){
+      this.$nextTick(()=>{
+        this.checkName(newVal);
+      })
+    }
+  },
+  computed:{
+    errortip(){
+
     }
   },
   methods: {
@@ -42,11 +55,28 @@ export default {
     },
     signup: function () {
       // signup api request
-      this.$http.post('api/signup', this.form).then(response => {
-        this.backToSignin()
+      this.$http.post('api/register', this.form).then(response => {
+        if(response.data.code === 0){
+          this.backToSignin()
+        }
+        else{
+          this.errortip = response.data.msg
+        }
+        console.log('signup', response);
+        
       }).catch(err => {
         console.log(err)
         this.$router.push('signup')
+      })
+    },
+    checkName: function(uname){
+      this.$http.post('api/register_name_check', uname).then(response=>{
+        if(response.data.code === 0){
+          this.nameAvailable = true;
+        }
+        else{
+          this.nameAvailable = false;
+        }
       })
     }
   }

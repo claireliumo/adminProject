@@ -2,7 +2,7 @@
   <div class="signin">
     <div class="signin__dialog">
       <div class="signin__dialog--title">BIM平台</div>
-      <form class="signin__dialog--form">
+      <div class="signin__dialog--form">
         <div class="signin__dialog--form-item">
           <span>用户名</span>
           <input v-model="form.uname" name="uname" />
@@ -18,12 +18,13 @@
           <button @click="signin">登录</button>
           <router-link to="/signup" class="toSignup">注册</router-link>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Signin',
   mounted () {
@@ -41,15 +42,14 @@ export default {
   },
   methods: {
     signin: function () {
-      this.$http.post('/api/login', this.form).then(response => {
-        if (response.code === 0) {
-          console.log(response)
+      this.$http.post('api/login', this.form).then(response => {
+        console.log(response);
+        if (response.data.code === 0) {
           this.$router.push('/main')
         } else {
           this.err = response.data.data
-          console.log(response.data.data)
         }
-      })
+      });
     }
   }
 }
