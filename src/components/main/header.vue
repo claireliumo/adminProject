@@ -223,7 +223,7 @@ export default{
       console.log(data)
     },
     signout: function () {
-      console.log('signout')
+      window.sessionStorage.removeItem('isLogin');
       this.$router.push('/signin')
     }
   }

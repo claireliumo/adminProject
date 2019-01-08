@@ -659,6 +659,11 @@ export default{
       }
     }
   },
+  mounted(){
+    if(!window.sessionStorage.getItem('isLogin')){
+      this.$router.push('/signin')
+    }
+  },
   methods: {
     handleSelectChange: function (menu) {
       console.log('mainChange')

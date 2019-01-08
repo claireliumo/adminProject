@@ -5,13 +5,13 @@
       <div class="signin__dialog--form">
         <div class="signin__dialog--form-item">
           <span>用户名</span>
-          <input v-model="form.uname" name="uname" />
+          <input v-model="form.uname" name="uname" @keyup.enter="signin"/>
         </div>
         <div class="signin__dialog--form-item">
           <span>密码</span>
-          <input v-model="form.password" name="password" type="password" />
+          <input v-model="form.password" name="password" type="password" @keyup.enter="signin"/>
         </div>
-        <div class="signin__dialog--form-msg" v-if="err">
+        <div class="signin__dialog--form-msg" v-show="err">
           {{err}}
         </div>
         <div class="signin__dialog--form-ctrl">
@@ -45,6 +45,8 @@ export default {
       this.$http.post('api/login', this.form).then(response => {
         console.log(response);
         if (response.data.code === 0) {
+          window.sessionStorage.setItem('isLogin', true);
+          this.err = null;
           this.$router.push('/main')
         } else {
           this.err = response.data.data

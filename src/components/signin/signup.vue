@@ -8,14 +8,21 @@
           <input v-model="form.uname" name="uname" />
         </div>
         <div class="signup__dialog--form-item">
+          <span>昵称</span>
+          <input v-model="form.nickname" name="nickname" />
+        </div>
+        <div class="signup__dialog--form-item">
           <span>密码</span>
           <input v-model="form.password" name="password" type="password" />
         </div>
         <div class="signup__dialog--form-item">
           <span>注册码</span>
-          <input v-model="form.code" name="password" type="password" />
+          <input v-model="form.apply_code" name="apply_code" type="text" />
         </div>
-        <div class="signup__dialog--form-tip">{{errortip}}</div>
+         <div class="signup__dialog--form-tip" v-show="errortip">
+          {{errortip}}
+        </div>
+        <!-- <div class="signup__dialog--form-tip">{{errortip}}</div> -->
         <div class="signup__dialog--form-ctrl">
           <button @click="signup">马上注册</button>
         </div>
@@ -33,20 +40,18 @@ export default {
         uname: null,
         password: null,
         apply_code: null,
+        nickname: null,
+        phone: null
       },
       nameAvailable: false,
+      errortip: null,
     }
   },
   watch: {
     'form.uname': function(newVal){
-      this.$nextTick(()=>{
+      setTimeout(()=>{
         this.checkName(newVal);
-      })
-    }
-  },
-  computed:{
-    errortip(){
-
+      }, 300);
     }
   },
   methods: {
@@ -70,13 +75,15 @@ export default {
       })
     },
     checkName: function(uname){
-      this.$http.post('api/register_name_check', uname).then(response=>{
+      this.$http.post('api/register_name_check', {'uname': uname}).then(response=>{
         if(response.data.code === 0){
           this.nameAvailable = true;
         }
         else{
+          
           this.nameAvailable = false;
         }
+        this.errortip = response.data.data;
       })
     }
   }
@@ -154,6 +161,13 @@ export default {
              background: transparent;
              border:none;
            }
+         }
+         &-tip {
+           color: red;
+           height: 20px;
+           line-height: 20px;
+           text-align: left;
+           margin-top: 6px;
          }
        }
      }
