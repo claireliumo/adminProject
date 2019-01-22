@@ -75,7 +75,7 @@ export default {
       })
     },
     checkName: function(uname){
-      this.$http.post('api/register_name_check', {'uname': uname}).then(response=>{
+      this.$http.post(this.FACTURL.baseURL+'/register_name_check', {'uname': uname}).then(response=>{
         if(response.data.code === 0){
           this.nameAvailable = true;
         }
