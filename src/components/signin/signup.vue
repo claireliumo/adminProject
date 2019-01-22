@@ -60,7 +60,7 @@ export default {
     },
     signup: function () {
       // signup api request
-      this.$http.post('api/register', this.form).then(response => {
+      this.$http.post(this.FACTURL.baseURL+ '/register', this.form).then(response => {
         if(response.data.code === 0){
           this.backToSignin()
         }

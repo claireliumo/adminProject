@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     signin: function () {
-      this.$http.post('api/login', this.form).then(response => {
+      this.$http.post(this.FACTURL.baseURL+ '/login', this.form).then(response => {
         console.log(response);
         if (response.data.code === 0) {
           window.sessionStorage.setItem('isLogin', true);
