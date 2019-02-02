@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Signin from '@/components/signin/signin'
 import Signup from '@/components/signin/signup'
 import Main from '@/components/main/main'
+import Manage from '@/components/manage';
 import {rootRedirect} from './routes'
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       name: 'main',
       path: '/main',
       component: Main
+    },
+    {
+      name: 'manage',
+      path: '/manage',
+      component: Manage
     }
   ]
 })

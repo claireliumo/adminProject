@@ -18,7 +18,7 @@
       <Menu :datas="datas.firemonitor" v-width="200" className="main-header__navbar-menu"></Menu>
       <div class="main-header__tool">
         <i class="el-icon-rank"></i>
-        <i class="el-icon-setting"></i>
+        <el-button type="text" @click="goToManage"><i class="el-icon-setting"></i></el-button>
         <el-button type="text" @click="signout"><i class="el-icon-error"></i></el-button>
       </div>
     </div>  
@@ -221,6 +221,9 @@ export default{
     },
     handleClick: function(data) {
       console.log(data)
+    },
+    goToManage: function(){
+      this.$router.push('/manage');
     },
     signout: function () {
       window.sessionStorage.removeItem('isLogin');
